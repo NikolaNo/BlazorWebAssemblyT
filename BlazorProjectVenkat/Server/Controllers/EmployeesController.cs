@@ -66,12 +66,20 @@ namespace BlazorProjectVenkat.Server.Controllers
             {
                 if (employee == null) return BadRequest();
 
+                var emp = employeeRepository.GetEmployeeByEmail(employee.Email);
+
+                if (emp != null)
+                {
+                    ModelState.AddModelError("Email", "Employee email is already in use");
+                    return BadRequest(ModelState);
+                }
+
                 var createdEmployee = await employeeRepository.AddEmployee(employee);
 
                 return CreatedAtAction(nameof(GetEmployee), new { id = createdEmployee.EmployeeId }, createdEmployee );
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error creating new employee record");
