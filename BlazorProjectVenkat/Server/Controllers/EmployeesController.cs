@@ -66,7 +66,7 @@ namespace BlazorProjectVenkat.Server.Controllers
             {
                 if (employee == null) return BadRequest();
 
-                var emp = employeeRepository.GetEmployeeByEmail(employee.Email);
+                var emp = await employeeRepository.GetEmployeeByEmail(employee.Email);
 
                 if (emp != null)
                 {
@@ -83,6 +83,58 @@ namespace BlazorProjectVenkat.Server.Controllers
             {
 
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error creating new employee record");
+            }
+
+        }
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<Employee>> UpdateEmployee(int id, Employee employee)
+        {
+
+            try
+            {
+                if (id != employee.EmployeeId) return BadRequest("Employee id mismatch");
+
+                var employeeToUpdate = await employeeRepository.GetEmployee(id);
+
+                if (employeeToUpdate == null)
+                {
+                    return NotFound($"Employee with id = {id} not found");
+                }
+
+                return await employeeRepository.UpdateEmployee(employee);                
+
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating employee record");
+            }
+
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> DeleteEmployee(int id)
+        {
+
+            try
+            {
+             
+
+                var employeeToDelete = await employeeRepository.GetEmployee(id);
+                if(employeeToDelete == null)
+                {
+                    return NotFound($"Employee with id = {id} not found");
+                }
+
+                await employeeRepository.DeleteEmployee(id);
+
+                return Ok($"Employee with id = {id} deleted");
+
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleteing employee record");
             }
 
         }

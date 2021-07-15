@@ -84,8 +84,14 @@ namespace BlazorProjectVenkat.Server.Models
             if (result != null)
             {
                 result.DateOfBrith = employee.DateOfBrith;
-                result.Department = employee.Department;
-                result.DepartmentId = employee.DepartmentId;
+                if (employee.DepartmentId != 0)
+                {
+                    result.DepartmentId = employee.DepartmentId;
+                }
+                else if (employee.Department != null)
+                {
+                    result.DepartmentId = employee.Department.DepartmentId;
+                }
                 result.Email = employee.Email;
                 result.EmployeeId = employee.EmployeeId;
                 result.FirstName = employee.FirstName;
