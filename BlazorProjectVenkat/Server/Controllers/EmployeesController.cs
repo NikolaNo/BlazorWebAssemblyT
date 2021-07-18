@@ -56,6 +56,7 @@ namespace BlazorProjectVenkat.Server.Controllers
             }
             
         }
+
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
