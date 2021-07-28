@@ -1,6 +1,10 @@
 ﻿@page "/"
 @using BlazorProjectVenkat.Shared
-
+    <style>
+        .sf-license-warning {
+            display: none!important;
+        }
+    </style>
 
 @if (Employees == null)
 { 
@@ -9,52 +13,32 @@
 </div>
 }
 
-@if(Employees != null){
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                FirstName
-            </th>
-            <th>
-                LastName
-            </th>
-            <th>
-                Email
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Employees)
-        {
-            <tr>
-                <td>
-                    @item.FirstName
-                </td>
-
-                <td>
-                    @item.LastName
-                </td>
-
-                <td>
-                    @item.Email
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@if (Employees != null)
+{
+    <SfGrid DataSource="@Employees" AllowPaging="true">
+        <GridPageSettings PageSize="5" page PageSizes="@pagerDropdown"></GridPageSettings>
+        <GridColumns>
+            <GridColumn Field=@nameof(Employee.EmployeeId) HeaderText="ID"></GridColumn>
+            <GridColumn Field=@nameof(Employee.FirstName) HeaderText="First Name"></GridColumn>
+            <GridColumn Field=@nameof(Employee.LastName) HeaderText=" Last Name"></GridColumn>
+            <GridColumn Field=@nameof(Employee.Email) HeaderText="Email"></GridColumn>
+            <GridColumn Field=@nameof(Employee.DepartmentId) HeaderText="Department"></GridColumn>
+        </GridColumns>
+    </SfGrid>
 }
 
 
 @code {
 public List<Employee> Employees { get; set; }
 
+string[] pagerDropdown = new string[] { "All", "5", "10", "15", "20" };
+
 [Inject]
 public IEmployeeService EmployeeService { get; set; }
 
 protected override async Task OnInitializedAsync()
 {
-    await Task.Delay(4000);
+   @* await Task.Delay(4000);*@
     Employees = (await EmployeeService.GetEmployees()).ToList();
 }
 
