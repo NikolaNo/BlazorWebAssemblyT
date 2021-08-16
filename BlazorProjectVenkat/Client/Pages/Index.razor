@@ -15,14 +15,15 @@
 
 @if (Employees != null)
 {
-    <SfGrid DataSource="@Employees" AllowPaging="true">
+    <SfGrid DataSource="@Employees" AllowPaging="true" AllowSorting="true">
+        <GridSortSettings AllowUnsort="false"></GridSortSettings>
         <GridPageSettings PageSize="5" page PageSizes="@pagerDropdown"></GridPageSettings>
         <GridColumns>
             <GridColumn Field=@nameof(Employee.EmployeeId) HeaderText="ID"></GridColumn>
             <GridColumn Field=@nameof(Employee.FirstName) HeaderText="First Name"></GridColumn>
             <GridColumn Field=@nameof(Employee.LastName) HeaderText=" Last Name"></GridColumn>
             <GridColumn Field=@nameof(Employee.Email) HeaderText="Email"></GridColumn>
-            <GridColumn Field=@nameof(Employee.DepartmentId) HeaderText="Department"></GridColumn>
+            <GridColumn AllowSorting="false" Field=@nameof(Employee.DepartmentId) HeaderText="Department"></GridColumn>
         </GridColumns>
     </SfGrid>
 }
