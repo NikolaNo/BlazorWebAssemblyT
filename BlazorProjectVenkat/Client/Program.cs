@@ -25,6 +25,7 @@ namespace BlazorProjectVenkat.Client
             });
             //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddSyncfusionBlazor();
+            builder.Services.AddScoped<EmployeeAdaptor>();
             await builder.Build().RunAsync();
         }
     }
