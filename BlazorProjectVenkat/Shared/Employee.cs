@@ -10,9 +10,11 @@ namespace BlazorProjectVenkat.Shared
     public class Employee
     {
         public int EmployeeId { get; set; }
+
         [Required]
         [MinLength(2, ErrorMessage = "First Name must contain at least 2 characters")]
         public string FirstName { get; set; }
+
         [Required]
         public string LastName { get; set; }
         public string Email { get; set; }

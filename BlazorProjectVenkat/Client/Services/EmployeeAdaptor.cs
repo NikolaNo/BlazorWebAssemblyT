@@ -18,7 +18,18 @@ namespace BlazorProjectVenkat.Client.Services
         }
         public async override Task<object> ReadAsync(DataManagerRequest dataManagerRequest, string key = null)
         {
-            EmployeeDataResult result = await employeeService.GetEmployees(dataManagerRequest.Skip, dataManagerRequest.Take);
+            string orderByString = null;
+
+            if (dataManagerRequest.Sorted != null) 
+            {
+
+                List<Sort> sortList = dataManagerRequest.Sorted;
+                sortList.Reverse();
+                orderByString = string.Join(",", sortList.Select(s => string.Format("{0} {1}", s.Name, s.Direction)));
+
+            }
+
+            EmployeeDataResult result = await employeeService.GetEmployees(dataManagerRequest.Skip, dataManagerRequest.Take, orderByString);
 
             DataResult dataResult = new DataResult()
             {

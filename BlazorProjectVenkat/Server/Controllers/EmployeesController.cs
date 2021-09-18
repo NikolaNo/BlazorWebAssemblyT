@@ -42,25 +42,21 @@ namespace BlazorProjectVenkat.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetEmployees(int skip = 0, int take = 5)
+        public async Task<ActionResult> GetEmployees(int skip = 0, int take = 5, string orderBy = "EmployeeId")
         {
-
             try
             {
-                return Ok(await employeeRepository.GetEmployees(skip,take));
+                return Ok(await employeeRepository.GetEmployees(skip,take, orderBy));
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retriveing data from the database");
-            }
-            
+            }            
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
-
             try
             {
                 var result = await employeeRepository.GetEmployee(id);
@@ -74,7 +70,6 @@ namespace BlazorProjectVenkat.Server.Controllers
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retriveing data from the database");
             }
 
