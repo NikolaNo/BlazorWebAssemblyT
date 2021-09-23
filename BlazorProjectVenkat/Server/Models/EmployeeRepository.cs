@@ -42,6 +42,11 @@ namespace BlazorProjectVenkat.Server.Models
             }
         }
 
+        public async Task<IEnumerable<Employee>> GetAllEmployees()
+        {
+            return await appDbContext.Employees.ToListAsync();
+        }
+
         public async Task<Employee> GetEmployee(int employeeId)
         {
             return await appDbContext.Employees

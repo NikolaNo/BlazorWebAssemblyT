@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorProjectVenkat.Server", "BlazorProjectVenkat\Server\BlazorProjectVenkat.Server.csproj", "{E2948975-A91E-490C-863C-3ABB2737D829}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorProjectVenkat.Server", "BlazorProjectVenkat\Server\BlazorProjectVenkat.Server.csproj", "{E2948975-A91E-490C-863C-3ABB2737D829}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorProjectVenkat.Client", "BlazorProjectVenkat\Client\BlazorProjectVenkat.Client.csproj", "{DC523997-AB40-40E5-88E2-12F9A0A64363}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorProjectVenkat.Client", "BlazorProjectVenkat\Client\BlazorProjectVenkat.Client.csproj", "{DC523997-AB40-40E5-88E2-12F9A0A64363}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorProjectVenkat.Shared", "BlazorProjectVenkat\Shared\BlazorProjectVenkat.Shared.csproj", "{73B7772D-716A-4416-AE0C-457A04B65A5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorProjectVenkat.Shared", "BlazorProjectVenkat\Shared\BlazorProjectVenkat.Shared.csproj", "{73B7772D-716A-4416-AE0C-457A04B65A5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
